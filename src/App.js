@@ -4,15 +4,19 @@ import Cita from './components/Cita'
 
 
 function App() {
-
   //array de citas
   const [citas, guardarCitas] = useState([]);
-
+ //Funcion que toma la cita actual y agrega la nueva
   const crearCita = cita => {
     guardarCitas([...citas, cita])
     console.log(cita)
   }
+  //Funcion para eliminar cita por id
+  const eliminarCita = id => {
+    const nuevasCitas = citas.filter(cita => cita.id !== id);
+    guardarCitas(nuevasCitas)
 
+  }
   return (
     <Fragment>
       <h1>Administrador de Pacientes</h1>
@@ -29,6 +33,7 @@ function App() {
               <Cita 
                 key={cita.id}
                 cita={cita}
+                eliminarCita={eliminarCita}
               />
             ))}
           </div>
