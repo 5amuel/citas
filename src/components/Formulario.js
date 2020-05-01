@@ -1,4 +1,5 @@
 import React, {Fragment, useState} from 'react';
+import uuid from 'uuid/dist/v4';
 
 const Formulario = () => {
 
@@ -11,7 +12,6 @@ const Formulario = () => {
     })
 
     const[error, actualizarError] = useState(false)
-
     const actualizarState = e => {
         actualizarCita({
             ...cita,
@@ -21,15 +21,15 @@ const Formulario = () => {
     const { mascota, propietario, fecha, hora, sintomas} = cita
     const submitCita = e => {
         e.preventDefault();
-        console.log(mascota);
 
         //Validar
         if(mascota.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === ''){
             actualizarError(true);
             return;
         }
+        actualizarError(false);
         //Asignar un ID
-
+        cita.id = uuid();
         //Crear la cita
 
         //Reiniciar el form
