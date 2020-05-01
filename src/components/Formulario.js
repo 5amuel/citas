@@ -17,10 +17,22 @@ const Formulario = () => {
         })
     }
     const { mascota, propietario, fecha, hora, sintomas} = cita
+    const submitCita = e => {
+        e.preventDefault();
+        //Validar
+
+        //Asignar un ID
+
+        //Crear la cita
+
+        //Reiniciar el form
+    }
     return ( 
         <Fragment>
             <h2>Crear cita</h2>
-            <form>
+            <form
+                onSubmit={submitCita}
+            >
                 <label>Nombre Mascota</label>
                 <input 
                     type="text"
@@ -66,9 +78,7 @@ const Formulario = () => {
                     type="submit"
                     className="u-full-width button-primary"
                 >Agregar cita</button>
-
             </form>
-
         </Fragment>
      );
 }
