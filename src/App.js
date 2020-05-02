@@ -1,11 +1,27 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import Formulario from './components/Formulario'
 import Cita from './components/Cita'
 
 
 function App() {
+  //citas en local storage
+  let citasIniciales = JSON.parse(localStorage.getItem('citas'));
+  if(!citasIniciales){
+    citasIniciales = [];
+  }
+  
   //array de citas
-  const [citas, guardarCitas] = useState([]);
+  const [citas, guardarCitas] = useState(citasIniciales);
+
+ //useEffect para operar cuando el state cambia
+  useEffect(() => {
+    if(citasIniciales){
+      localStorage.setItem('citas', JSON.stringify(citas));
+    }else{
+      localStorage.setItem('citas', JSON.stringify([]))
+    }
+  }, [citas, citasIniciales]);
+
  //Funcion que toma la cita actual y agrega la nueva
   const crearCita = cita => {
     guardarCitas([...citas, cita])
